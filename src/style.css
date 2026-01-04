@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1440px;
+    border: 1px solid red;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.content {
+    width: 95%;
+    border: 1px solid blue;
+    margin: 0 auto;
+}
