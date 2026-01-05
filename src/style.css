@@ -155,7 +155,7 @@
 }
 
 .cPPrice {
-    width: 30%;
+    width: 25%;
     display: flex;
     justify-content: center;
 }
@@ -163,14 +163,21 @@
 .name-img {
     display: flex;
     align-items: center;
-    width: 40%;
+    width: 25%;
     gap: 10px;
 }
 
 .quantity {
-    width: 30%;
+    width: 25%;
     display: flex;
     justify-content: end;
+}
+
+.delete-ico{
+    width: 25%;
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
 }
 
 #back-btn {

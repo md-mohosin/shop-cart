@@ -135,10 +135,24 @@ function renderCartProduct() {
        </div>
         <p class='cPPrice'>$${cartProduct.price}</p>
         <p class='quantity'>quantity:${cartProduct.quantity}</p>
+        <div class="delete-ico">
+        <img class='trash' data-id='${cartProduct.id}' src="./src/images/trash.png" alt="">
+        </div>
         `
         cartProductContainer.appendChild(div)
     })
 }
+
+
+
+cartProductContainer.addEventListener("click", e => {
+    if (e.target.classList.contains('trash')) {
+        const id = Number(e.target.dataset.id)
+        addProductArry = addProductArry.filter(d => d.id !== id)
+        renderCartProduct()
+        setLocalStorage()
+    }
+})
 
 
 
