@@ -62,6 +62,13 @@ const latestProducts = [
         price: 5000,
         img: "./src/images/laptop-stand.png"
     },
+    {
+        id: 10,
+        name: "Pendrive",
+        title: "Duo link USB 3.2 pendrive",
+        price: 5000,
+        img: "./src/images/pendrive.png"
+    }
 ];
 
 const latestProductContainer = document.getElementById("latest-product-container")
@@ -84,7 +91,7 @@ latestProducts.forEach((product) => {
 
 
 
-const addProductArry = []
+let addProductArry = []
 
 latestProductContainer.addEventListener("click", e => {
     if (e.target.classList.contains('add-cart-btn')) {
@@ -99,10 +106,18 @@ latestProductContainer.addEventListener("click", e => {
         else {
             existCartProduct.quantity++
         }
-
+        setLocalStorage()
     }
+    cartCount()
     renderCartProduct()
 })
+
+
+
+function cartCount() {
+    const quantityCount = addProductArry.reduce((sum, next) => sum + next.quantity, 0)
+    document.getElementById("cart-product-count").innerText = quantityCount
+}
 
 
 
@@ -127,6 +142,20 @@ function renderCartProduct() {
 
 
 
+function setLocalStorage() {
+    localStorage.setItem("cartProduct", JSON.stringify(addProductArry))
+}
+function getLocalStorage() {
+    const data = localStorage.getItem("cartProduct")
+    if (data) {
+        addProductArry = JSON.parse(data)
+        renderCartProduct()
+    }
+    cartCount()
+}
+getLocalStorage()
+
+
 function hide(id) {
     document.getElementById(id).classList.add("hidden")
 }
@@ -139,4 +168,8 @@ function show(id) {
 document.getElementById("cart-icon").addEventListener("click", () => {
     hide('home-page')
     show("cartSection")
+})
+document.getElementById("back-btn").addEventListener("click", () => {
+    hide("cartSection")
+    show('home-page')
 })
