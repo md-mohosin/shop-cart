@@ -83,6 +83,7 @@ latestProducts.forEach((product) => {
 
 
 
+
 const addProductArry = []
 
 latestProductContainer.addEventListener("click", e => {
@@ -90,8 +91,15 @@ latestProductContainer.addEventListener("click", e => {
         const id = Number(e.target.dataset.id)
 
         const addProduct = latestProducts.find(addProduct => addProduct.id === id)
-        addProductArry.push(addProduct)
         if (!addProduct) return
+        const existCartProduct = addProductArry.find(p => p.id === id)
+        if (!existCartProduct) {
+            addProductArry.push({ ...addProduct, quantity: 1 })
+        }
+        else {
+            existCartProduct.quantity++
+        }
+
     }
     renderCartProduct()
 })
@@ -101,13 +109,17 @@ latestProductContainer.addEventListener("click", e => {
 const cartProductContainer = document.getElementById("cartProduct-container")
 
 function renderCartProduct() {
+    cartProductContainer.innerHTML = ''
     addProductArry.forEach(cartProduct => {
         const div = document.createElement("div")
         div.className = 'cart-product'
         div.innerHTML = `
+       <div class='name-img'>
         <img class='cart-img' src="${cartProduct.img}" alt="">
-        <p>${cartProduct.name}</p>
-        <p>${cartProduct.price}</p>
+        <p class='cartPName'>${cartProduct.name}</p>
+       </div>
+        <p class='cPPrice'>$${cartProduct.price}</p>
+        <p class='quantity'>quantity:${cartProduct.quantity}</p>
         `
         cartProductContainer.appendChild(div)
     })
@@ -126,4 +138,5 @@ function show(id) {
 
 document.getElementById("cart-icon").addEventListener("click", () => {
     hide('home-page')
+    show("cartSection")
 })
