@@ -54,22 +54,76 @@ const latestProducts = [
         title: "Fast Charging Anytime",
         price: 2700,
         img: "./src/images/power-bank.png"
-    }
+    },
+    {
+        id: 9,
+        name: "Lapotp stand",
+        title: "Stand with 360 degree rotate",
+        price: 5000,
+        img: "./src/images/laptop-stand.png"
+    },
 ];
 
 const latestProductContainer = document.getElementById("latest-product-container")
 
 latestProducts.forEach((product) => {
     const div = document.createElement("div")
+    div.className = 'latest-product'
     div.innerHTML = `
-    <div class='latest-product'>
         <img class='latest-img' src="${product.img}" alt="">
         <div class='name-price'>
             <p class='p-name'>${product.name}</p>
             <p>$${product.price}</p>
         </div>
         <p class='title'>${product.title}</p>
-    </div>
+        <button class='add-cart-btn' data-id='${product.id}'>Add to cart</button>
     `
     latestProductContainer.appendChild(div)
+})
+
+
+
+const addProductArry = []
+
+latestProductContainer.addEventListener("click", e => {
+    if (e.target.classList.contains('add-cart-btn')) {
+        const id = Number(e.target.dataset.id)
+
+        const addProduct = latestProducts.find(addProduct => addProduct.id === id)
+        addProductArry.push(addProduct)
+        if (!addProduct) return
+    }
+    renderCartProduct()
+})
+
+
+
+const cartProductContainer = document.getElementById("cartProduct-container")
+
+function renderCartProduct() {
+    addProductArry.forEach(cartProduct => {
+        const div = document.createElement("div")
+        div.className = 'cart-product'
+        div.innerHTML = `
+        <img class='cart-img' src="${cartProduct.img}" alt="">
+        <p>${cartProduct.name}</p>
+        <p>${cartProduct.price}</p>
+        `
+        cartProductContainer.appendChild(div)
+    })
+}
+
+
+
+function hide(id) {
+    document.getElementById(id).classList.add("hidden")
+}
+function show(id) {
+    document.getElementById(id).classList.remove("hidden")
+}
+
+
+
+document.getElementById("cart-icon").addEventListener("click", () => {
+    hide('home-page')
 })
