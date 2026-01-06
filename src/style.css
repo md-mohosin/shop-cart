@@ -173,7 +173,12 @@
     justify-content: end;
 }
 
-.delete-ico{
+.total {
+    font-size: 23px;
+    margin-top: 20px;
+}
+
+.delete-ico {
     width: 25%;
     display: flex;
     justify-content: end;

@@ -10,7 +10,7 @@ const latestProducts = [
         id: 2,
         name: "Laptop",
         title: "High performance laptop for daily work",
-        price: 65000,
+        price: 6500,
         img: "./src/images/laptop.png"
     },
     {
@@ -66,7 +66,7 @@ const latestProducts = [
         id: 10,
         name: "Pendrive",
         title: "Duo link USB 3.2 pendrive",
-        price: 5000,
+        price: 2000,
         img: "./src/images/pendrive.png"
     }
 ];
@@ -109,6 +109,7 @@ latestProductContainer.addEventListener("click", e => {
         setLocalStorage()
     }
     cartCount()
+    countPrice()
     renderCartProduct()
 })
 
@@ -117,8 +118,14 @@ latestProductContainer.addEventListener("click", e => {
 function cartCount() {
     const quantityCount = addProductArry.reduce((sum, next) => sum + next.quantity, 0)
     document.getElementById("cart-product-count").innerText = quantityCount
+    renderCartProduct()
 }
 
+
+function countPrice() {
+    const priceCount = addProductArry.reduce((sum, next) => sum + next.quantity * next.price, 0)
+    document.getElementById("total-price").innerText=priceCount
+}
 
 
 const cartProductContainer = document.getElementById("cartProduct-container")
@@ -151,6 +158,8 @@ cartProductContainer.addEventListener("click", e => {
         addProductArry = addProductArry.filter(d => d.id !== id)
         renderCartProduct()
         setLocalStorage()
+        cartCount()
+        countPrice()
     }
 })
 
@@ -166,6 +175,7 @@ function getLocalStorage() {
         renderCartProduct()
     }
     cartCount()
+    countPrice()
 }
 getLocalStorage()
 
