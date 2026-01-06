@@ -13,7 +13,6 @@
 
 .container {
     max-width: 1440px;
-    /* border: 1px solid red; */
     margin: 0 auto;
     background-color: white;
     color: black;
@@ -21,8 +20,8 @@
 
 .content {
     width: 100%;
-    /* border: 1px solid blue; */
     margin: 0 auto;
+    padding: 0 10px;
 }
 
 
@@ -51,7 +50,8 @@
     padding: 15px 20px;
     border-radius: 13px;
 }
-.latest-img img{
+
+.latest-img img {
     transition: 0.5s;
     object-fit: cover;
     width: 100%;
@@ -86,7 +86,7 @@
     margin-bottom: 50px;
 }
 
-.increase-quantity{
+.increase-quantity {
     cursor: pointer;
 }
 
@@ -164,7 +164,6 @@
     width: 25%;
     display: flex;
     justify-content: center;
-    /* border: 1px solid red; */
 }
 
 .name-img {
@@ -172,7 +171,6 @@
     align-items: center;
     width: 25%;
     gap: 10px;
-    /* border: 1px solid red; */
 }
 
 .quantity {
@@ -181,7 +179,6 @@
     justify-content: end;
     align-items: center;
     gap: 10px;
-    /* border: 1px solid red; */
 }
 
 
@@ -218,6 +215,44 @@
     gap: 6px;
     position: relative;
     cursor: pointer;
+}
+
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+}
+
+.item {
+    padding-bottom: 5px;
+}
+
+.footer-section .title {
+    font-size: 23px;
+    font-weight: bold;
+    padding-bottom: 14px;
+}
+
+.company-title {
+    padding-top: 14px;
+}
+
+.footer-content {
+    width: 40%;
+}
+
+.footer-link {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-logo {
+    width: 100px;
 }
 
 
@@ -258,6 +293,31 @@
 
     .banner-btn {
         margin-top: 10px;
+    }
+
+    .footer-section {
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .footer-content {
+        width: 100%;
+    }
+
+    .footer-link {
+        width: 100%;
+    }
+
+    .name-img {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .cPPrice,
+    .name-img,
+    .quantity,
+    .delete-ico {
+        width: auto;
     }
 }
 
@@ -305,5 +365,16 @@
     .top-nav {
         padding: 10px 10px;
         font-size: 12px;
+    }
+
+    .cart-product {
+        flex-direction: column;
+        align-items: start;
+        gap: 28px;
+    }
+
+
+    .footer-link{
+        flex-direction: column;
     }
 }

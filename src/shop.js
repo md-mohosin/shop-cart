@@ -75,6 +75,13 @@ const latestProducts = [
         title: "Loud, Clear & Deep Bass",
         price: 2000,
         img: "./src/images/speaker2.png"
+    },
+    {
+        id: 12,
+        name: "DJI cemera drone",
+        title: "Fly. Shoot. Explore.",
+        price: 2000,
+        img: "./src/images/drone.png"
     }
 ];
 
@@ -180,6 +187,9 @@ cartProductContainer.addEventListener("click", e => {
         setLocalStorage()
     }
     else if (e.target.classList.contains('decrease-quantity')) {
+        if (product.quantity === 1) {
+            return
+        }
         product.quantity--
         renderCartProduct()
         cartCount()
