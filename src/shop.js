@@ -68,6 +68,13 @@ const latestProducts = [
         title: "Duo link USB 3.2 pendrive",
         price: 2000,
         img: "./src/images/pendrive.png"
+    },
+    {
+        id: 11,
+        name: "Speaker",
+        title: "Loud, Clear & Deep Bass",
+        price: 2000,
+        img: "./src/images/speaker2.png"
     }
 ];
 
@@ -77,7 +84,7 @@ latestProducts.forEach((product) => {
     const div = document.createElement("div")
     div.className = 'latest-product'
     div.innerHTML = `
-        <img class='latest-img' src="${product.img}" alt="">
+        <div class='latest-img'><img src="${product.img}" alt=""></div>
         <div class='name-price'>
             <p class='p-name'>${product.name}</p>
             <p>$${product.price}</p>
@@ -115,6 +122,11 @@ latestProductContainer.addEventListener("click", e => {
 
 
 
+
+
+
+
+
 function cartCount() {
     const quantityCount = addProductArry.reduce((sum, next) => sum + next.quantity, 0)
     document.getElementById("cart-product-count").innerText = quantityCount
@@ -124,7 +136,7 @@ function cartCount() {
 
 function countPrice() {
     const priceCount = addProductArry.reduce((sum, next) => sum + next.quantity * next.price, 0)
-    document.getElementById("total-price").innerText=priceCount
+    document.getElementById("total-price").innerText = priceCount
 }
 
 
@@ -141,7 +153,11 @@ function renderCartProduct() {
         <p class='cartPName'>${cartProduct.name}</p>
        </div>
         <p class='cPPrice'>$${cartProduct.price}</p>
-        <p class='quantity'>quantity:${cartProduct.quantity}</p>
+        <div class='quantity'>
+            <img class='decrease-quantity' data-id='${cartProduct.id}' src="./src/images/minus.png" alt="">
+            <p>quantity:${cartProduct.quantity}</p>
+            <img class='increase-quantity' data-id='${cartProduct.id}' src="./src/images/plus.png" alt="">
+        </div>
         <div class="delete-ico">
         <img class='trash' data-id='${cartProduct.id}' src="./src/images/trash.png" alt="">
         </div>
@@ -149,6 +165,31 @@ function renderCartProduct() {
         cartProductContainer.appendChild(div)
     })
 }
+
+
+
+
+cartProductContainer.addEventListener("click", e => {
+    const id = Number(e.target.dataset.id);
+    const product = addProductArry.find(p => p.id === id)
+    if (e.target.classList.contains('increase-quantity')) {
+        product.quantity++
+        renderCartProduct()
+        cartCount()
+        countPrice()
+        setLocalStorage()
+    }
+    else if (e.target.classList.contains('decrease-quantity')) {
+        product.quantity--
+        renderCartProduct()
+        cartCount()
+        countPrice()
+        setLocalStorage()
+    }
+})
+
+
+
 
 
 
